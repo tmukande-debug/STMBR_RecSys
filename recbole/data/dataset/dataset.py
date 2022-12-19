@@ -201,7 +201,7 @@ class Dataset(object):
     def _get_download_url(self, url_file, allow_none=False):
         current_path = os.path.dirname(os.path.realpath(__file__))
         #with open(os.path.join(current_path, f'../../properties/dataset/{url_file}.yaml')) as f:
-        with open(os.path.join(current_path, f'../../properties/dataset/{content/drive/MyDrive/RESEARCH PROJECT/datasets/MBHT_dataset/}.yaml')) as f:
+        with open(os.path.join(current_path, f'../../properties/dataset/{content/drive/MyDrive/RESEARCH_PROJECT/datasets/MBHT_dataset/}.yaml')) as f:
             dataset2url = yaml.load(f.read(), Loader=self.config.yaml_loader)
 
         if self.dataset_name in dataset2url:
