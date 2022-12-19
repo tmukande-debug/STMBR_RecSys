@@ -197,13 +197,12 @@ class Dataset(object):
                 if getattr(self, f'{suf}_feat', None) is not None:
                     feat_name_list.append(f'{suf}_feat')
         return feat_name_list
-
+    
     def _get_download_url(self, url_file, allow_none=False):
-        current_path = os.path.dirname(os.path.realpath(__file__)
+        current_path = os.path.dirname(os.path.realpath(__file__))
         with open(os.path.join(current_path, f'../../properties/dataset/{url_file}.yaml')) as f:
-        #with open(os.path.join(current_path, f'/content/drive/MyDrive/RESEARCH_PROJECT/datasets/MBHT_dataset/{retail_beh}.yaml')) as f:
             dataset2url = yaml.load(f.read(), Loader=self.config.yaml_loader)
-
+            
         if self.dataset_name in dataset2url:
             url = dataset2url[self.dataset_name]
             return url
