@@ -190,7 +190,7 @@ class Config(object):
 
         if dataset is None:
             try:
-                final_dataset = self.external_config_dict['/content/drive/MyDrive/RESEARCH_PROJECT/datasets/MBHT_dataset']
+                final_dataset = self.external_config_dict['dataset']
             except KeyError:
                 raise KeyError(
                     'dataset need to be specified in at least one of the these ways: '
@@ -263,8 +263,8 @@ class Config(object):
         return final_config_dict
 
     def _set_default_parameters(self):
-        self.final_config_dict['/content/drive/MyDrive/RESEARCH_PROJECT/datasets/MBHT_dataset'] = self.dataset
-        #self.final_config_dict['dataset'] = self.dataset
+        #self.final_config_dict['/content/drive/MyDrive/RESEARCH_PROJECT/datasets/MBHT_dataset'] = self.dataset
+        self.final_config_dict['dataset'] = self.dataset
         self.final_config_dict['model'] = self.model
         if self.dataset == 'ml-100k':
             current_path = os.path.dirname(os.path.realpath(__file__))
