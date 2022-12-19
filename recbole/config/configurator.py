@@ -271,7 +271,7 @@ class Config(object):
             self.final_config_dict['data_path'] = os.path.join(current_path, '../dataset_example/' + self.dataset)
         else:
             #self.final_config_dict['data_path'] = os.path.join(self.final_config_dict['data_path'], self.dataset)
-            self.final_config_dict['data_path'] = os.path.join(current_path, '/content/drive/MyDrive/RESEARCH_PROJECT/datasets/MBHT_dataset/' + self.dataset)
+            self.final_config_dict['data_path'] = '/content/drive/MyDrive/RESEARCH_PROJECT/datasets/MBHT_dataset/retail_beh/'
 
         if hasattr(self.model_class, 'input_type'):
             self.final_config_dict['MODEL_INPUT_TYPE'] = self.model_class.input_type
