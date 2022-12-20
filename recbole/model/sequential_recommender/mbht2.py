@@ -11,6 +11,8 @@ from torch import nn
 import torch.nn.functional as F
 from recbole.model.abstract_recommender import SequentialRecommender
 from recbole.model.layers import TransformerEncoder, HGNN
+from sinkhorn_transformer import SinkhornTransformerLM
+
 
 
 #SOFT , rela-transformer, Nystromformer, conformer, compressive-transformer-pytorch,sinkhorn-transformer, GraphiT,flash_pytorchm Graph_Transformer_Networks, memory-efficient-attention-pytorch
@@ -56,31 +58,22 @@ class MBHT(SequentialRecommender):
         self.type_embedding = nn.Embedding(6, self.hidden_size, padding_idx=0)
         self.item_embedding = nn.Embedding(self.n_items + 1, self.hidden_size, padding_idx=0)  # mask token add 1
         self.position_embedding = nn.Embedding(self.max_seq_length + 1, self.hidden_size)  # add mask_token at the last
-        if self.enable_ms:
-            self.trm_encoder = TransformerEncoder(
-                n_layers=self.n_layers,
-                n_heads=self.n_heads,
-                hidden_size=self.hidden_size,
-                inner_size=self.inner_size,
-                hidden_dropout_prob=self.hidden_dropout_prob,
+        DE_SEQ_LEN = 4096
+        EN_SEQ_LEN = 4096
+        
+        self.trm_encoder = SinkhornTransformerLM(
+                depth=self.n_layers,
+                heads=self.n_heads,
+                bucket_size=self.hidden_size,
+                dim =self.inner_size,
                 attn_dropout_prob=self.attn_dropout_prob,
-                hidden_act=self.hidden_act,
-                layer_norm_eps=self.layer_norm_eps,
-                multiscale=True,
-                scales=config["scales"]
-            )
-        else:
-            self.trm_encoder = TransformerEncoder(
-                n_layers=self.n_layers,
-                n_heads=self.n_heads,
-                hidden_size=self.hidden_size,
-                inner_size=self.inner_size,
-                hidden_dropout_prob=self.hidden_dropout_prob,
-                attn_dropout_prob=self.attn_dropout_prob,
-                hidden_act=self.hidden_act,
-                layer_norm_eps=self.layer_norm_eps,
-                multiscale=False
-            )
+                max_seq_len = DE_SEQ_LEN,
+                num_tokens = 20000,
+                reversible = True,
+                return_embeddings = True
+           )
+            
+
         self.hgnn_layer = HGNN(self.hidden_size)
         self.LayerNorm = nn.LayerNorm(self.hidden_size, eps=self.layer_norm_eps)
         self.dropout = nn.Dropout(self.hidden_dropout_prob)
