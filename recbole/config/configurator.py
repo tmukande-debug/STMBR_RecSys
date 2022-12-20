@@ -273,7 +273,7 @@ class Config(object):
             #self.final_config_dict['data_path'] = os.path.join(self.final_config_dict['data_path'], self.dataset)
             #self.final_config_dict['data_path'] = '/content/drive/MyDrive/RESEARCH_PROJECT/datasets/MBHT_dataset/retail_beh/'
             #self.final_config_dict['data_path'] = '/content/drive/MyDrive/RESEARCH_PROJECT/datasets/MBHT_dataset/ijcai_beh/'
-            self.final_config_dict['data_path'] = '/content/drive/MyDrive/RESEARCH_PROJECT/datasets/MBHT_dataset/retail_beh/'
+            self.final_config_dict['data_path'] = '/content/drive/MyDrive/RESEARCH_PROJECT/datasets/MBHT_dataset/tmall_beh/'
 
         if hasattr(self.model_class, 'input_type'):
             self.final_config_dict['MODEL_INPUT_TYPE'] = self.model_class.input_type
