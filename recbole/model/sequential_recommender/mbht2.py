@@ -13,6 +13,7 @@ from recbole.model.abstract_recommender import SequentialRecommender
 from recbole.model.layers import TransformerEncoder, HGNN
 from sinkhorn_transformer import SinkhornTransformerLM
 #model = Autopadder(model, pad_left=True) # autopadder will fetch the bucket size and autopad input
+#from sinkhorn_transformer import SinkhornTransformerLM, AutoregressiveWrapper
 
 
 #SOFT , rela-transformer, Nystromformer, conformer, compressive-transformer-pytorch,sinkhorn-transformer, GraphiT,flash_pytorchm Graph_Transformer_Networks, memory-efficient-attention-pytorch
