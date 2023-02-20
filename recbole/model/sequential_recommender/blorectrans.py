@@ -73,7 +73,7 @@ class MBHT(SequentialRecommender):
                 #return_embeddings = True
            #)
             
-         self.trm_encoder=BlockRecurrentTransformer(
+        self.trm_encoder=BlockRecurrentTransformer(
                num_tokens = 2000,
                dim = self.inner_size,
                depth = self.n_layers,
