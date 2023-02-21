@@ -6,8 +6,8 @@ from recbole.data import create_dataset
 from recbole.data.utils import get_dataloader, create_samplers
 #from recbole.model.sequential_recommender.mbht2 import MBHT
 from recbole.utils import init_logger, init_seed, get_model, get_trainer, set_color
-from recbole.model.sequential_recommender.blorectrans import MBHT
-
+#from recbole.model.sequential_recommender.blorectrans import MBHT
+from recbole.model.sequential_recommender.mega import MBHT
 
 def get_args():
     parser = argparse.ArgumentParser()
