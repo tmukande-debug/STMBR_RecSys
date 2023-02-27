@@ -12,7 +12,7 @@ import torch.nn.functional as F
 from recbole.model.abstract_recommender import SequentialRecommender
 from recbole.model.layers import TransformerEncoder, HGNN
 #from sinkhorn_transformer import SinkhornTransformerLM
-from block_recurrent_transformer_pytorch import BlockRecurrentTransformer
+from nystrom_attention import Nystromer
 
 
 #SOFT , rela-transformer, Nystromformer, conformer, compressive-transformer-pytorch, GraphiT,flash_pytorchm Graph_Transformer_Networks, memory-efficient-attention-pytorch
