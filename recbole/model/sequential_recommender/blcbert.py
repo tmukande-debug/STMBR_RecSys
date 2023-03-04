@@ -267,6 +267,7 @@ class BERT4Rec(SequentialRecommender):
         test_items_emb = self.item_embedding.weight[:self.n_items]  # delete masked token
         scores = torch.matmul(seq_output, test_items_emb.transpose(0, 1))  # [B, item_num]
         return scores
+   
     def customized_sort_predict(self, interaction):
         item_seq = interaction['item_id_list']
         type_seq = interaction['item_type_list']
@@ -318,7 +319,7 @@ class BERT4Rec(SequentialRecommender):
                 multibeh_group.remove(self.mask_token)
             except:
                 pass
-                        # l', l'
+                # l', l'
             seq_item_sim = item_sim[batch_idx][:n_obj, :][:, :n_obj]            
             # l', group_len
             if group_len>n_obj:
