@@ -10,10 +10,9 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 from recbole.model.abstract_recommender import SequentialRecommender
-from recbole.model.layers import TransformerEncoder, HGNN
-from sinkhorn_transformer import SinkhornTransformerLM
-#model = Autopadder(model, pad_left=True) # autopadder will fetch the bucket size and autopad input
-#from sinkhorn_transformer import SinkhornTransformerLM, AutoregressiveWrapper
+from recbole.model.layers import HGNN
+from sinkhorn_transformer import SinkhornTransformerLM, AutoregressiveWrapper
+from sinkhorn_transformer import Autopadder
 
 
 #SOFT , rela-transformer, Nystromformer, conformer, compressive-transformer-pytorch,sinkhorn-transformer, GraphiT,flash_pytorchm Graph_Transformer_Networks, memory-efficient-attention-pytorch
@@ -30,15 +29,15 @@ class MBHT(SequentialRecommender):
         super(MBHT, self).__init__(config, dataset)
 
         # load parameters info
-        self.n_layers = config['n_layers']
-        self.n_heads = config['n_heads']
-        self.hidden_size = config['hidden_size']  # same as embedding_size
-        self.inner_size = config['inner_size']  # the dimensionality in feed-forward layer
-        self.hidden_dropout_prob = config['hidden_dropout_prob']
-        self.attn_dropout_prob = config['attn_dropout_prob']
+        self.num_tokens = config['num_tokens']
+        self.heads = config['heads']
+        self.bucket_size = config['bucket_size']  # same as embedding_size
+        self.dim = config['dim']  # the dimensionality in feed-forward layer
+        self.reversible = config['reversible']
+        self.return_embeddings = config['return_embeddings']
         self.hidden_act = config['hidden_act']
         self.layer_norm_eps = config['layer_norm_eps']
-
+        
         self.mask_ratio = config['mask_ratio']
 
         self.loss_type = config['loss_type']
@@ -63,18 +62,19 @@ class MBHT(SequentialRecommender):
         EN_SEQ_LEN = 4096
         
         self.trm_encoder = SinkhornTransformerLM(
-                depth=self.n_layers,
-                heads=self.n_heads,
-                bucket_size=self.hidden_size,
-                dim =self.inner_size,
-                attn_dropout_prob=self.attn_dropout_prob,
+                depth=self.depth,
+                heads=self.heads,
+                bucket_size=self.bucket_size,
+                dim =dim,
+                reversible=self.reversible,
                 max_seq_len = DE_SEQ_LEN,
                 num_tokens = 20000,
                 reversible = True,
                 return_embeddings = True
-           )
-            
-
+                )
+        self.trm_encoder = AutoregressiveWrapper(self.trm_encoder)   
+        self.trm_encoder = Autopadder(self.trm_encoder, pad_left=True)
+        
         self.hgnn_layer = HGNN(self.hidden_size)
         self.LayerNorm = nn.LayerNorm(self.hidden_size, eps=self.layer_norm_eps)
         self.dropout = nn.Dropout(self.hidden_dropout_prob)
