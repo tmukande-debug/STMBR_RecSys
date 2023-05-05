@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-# @Time    : 2020/9/18 12:08
-# @Author  : Hui Wang
-# @Email   : hui.wang@ruc.edu.cn
 
 import math
 import random
@@ -23,10 +19,10 @@ def sim(z1: torch.Tensor, z2: torch.Tensor):
     z2 = F.normalize(z2)
     return torch.matmul(z1, z2.permute(0,2,1))
 
-class MBHT(SequentialRecommender):
+class STMBR(SequentialRecommender):
 
     def __init__(self, config, dataset):
-        super(MBHT, self).__init__(config, dataset)
+        super(STMBR, self).__init__(config, dataset)
 
         # load parameters info
         self.num_tokens = config['num_tokens']
@@ -71,7 +67,7 @@ class MBHT(SequentialRecommender):
                 reversible = True,
                 return_embeddings = True
                 )
-        self.trm_encoder = AutoregressiveWrapper(self.trm_encoder)   
+        #self.trm_encoder = AutoregressiveWrapper(self.trm_encoder)   
         self.trm_encoder = Autopadder(self.trm_encoder, pad_left=True)
         
         self.hgnn_layer = HGNN(self.hidden_size)
