@@ -55,7 +55,7 @@ class STMBR(SequentialRecommender):
         self.item_embedding = nn.Embedding(self.n_items + 1, self.hidden_size, padding_idx=0)  # mask token add 1
         self.position_embedding = nn.Embedding(self.max_seq_length + 1, self.hidden_size)  # add mask_token at the last
         DE_SEQ_LEN = 4096
-        EN_SEQ_LEN = 4096
+        #EN_SEQ_LEN = 4096
         
         self.trm_encoder = SinkhornTransformerLM(
                 depth=self.depth,
