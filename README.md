@@ -13,7 +13,7 @@ The code is built on Pytorch and the [RecBole](https://github.com/RUCAIBox/RecBo
 
 ## Run STMBR
 
-`python runSTMBR.py --model=[STMBR] --dataset=[tmall_beh] --gpu_id=[0] --batch_size=[2048]`, where [value] means the default value.
+`python runSTMBR.py --model=[STMBR] --dataset=[tmall_beh] --gpu_id=[0] --batch_size=[2048]`, where [value] is the default value.
 
 ## Tips
 - Note that we modified the evaluation sampling setting in `recbole/sampler/sampler.py` to make it static.
