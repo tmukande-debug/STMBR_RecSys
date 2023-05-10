@@ -27,13 +27,15 @@ class STMBR(SequentialRecommender):
         # load parameters info
         self.num_tokens = config['num_tokens']
         self.heads = config['heads']
-        self.bucket_size = config['bucket_size']  # same as embedding_size
-        self.dim = config['dim']  # the dimensionality in feed-forward layer
+        self.bucket_size = config['bucket_size']
+        self.dim = config['dim'] 
         self.reversible = config['reversible']
         self.return_embeddings = config['return_embeddings']
         self.hidden_act = config['hidden_act']
         self.layer_norm_eps = config['layer_norm_eps']
-        
+        self.depth = config['depth']
+        self.max_seq_len = config[' max_seq_len']
+       
         self.mask_ratio = config['mask_ratio']
 
         self.loss_type = config['loss_type']
@@ -54,8 +56,6 @@ class STMBR(SequentialRecommender):
         self.type_embedding = nn.Embedding(6, self.hidden_size, padding_idx=0)
         self.item_embedding = nn.Embedding(self.n_items + 1, self.hidden_size, padding_idx=0)  # mask token add 1
         self.position_embedding = nn.Embedding(self.max_seq_length + 1, self.hidden_size)  # add mask_token at the last
-        DE_SEQ_LEN = 4096
-        #EN_SEQ_LEN = 4096
         
         self.trm_encoder = SinkhornTransformerLM(
                 depth=self.depth,
