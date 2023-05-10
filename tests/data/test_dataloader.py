@@ -1,12 +1,3 @@
-# -*- coding: utf-8 -*-
-# @Time   : 2021/1/5
-# @Author : Yushuo Chen
-# @Email  : chenyushuo@ruc.edu.cn
-
-# UPDATE
-# @Time    :   2020/1/5, 2021/7/1, 2021/7/19
-# @Author  :   Yushuo Chen, Xingyu Pan, Zhichao Feng
-# @email   :   chenyushuo@ruc.edu.cn, xy_pan@foxmail.com, fzcbupt@gmail.com
 
 import logging
 import os
