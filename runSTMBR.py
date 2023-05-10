@@ -53,7 +53,7 @@ if __name__ == '__main__':
         config_dict['scales'] = [5, 4, 20]
         config_dict['hyper_len'] = 6
         
-    config = Config(model="STMBR", dataset=f'{args.dataset}', config_dict=config_dict)
+    config = Config(model="MBHT", dataset=f'{args.dataset}', config_dict=config_dict)
     # config['device']="cpu"
     init_seed(config['seed'], config['reproducibility'])
 
