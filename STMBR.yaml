@@ -3,14 +3,14 @@ USER_ID_FIELD: 'session_id'
 load_col: null
 benchmark_filename: ['train', 'test']
 alias_of_item_id: ['item_id_list']
-n_layers: 2
-n_heads: 2
-hidden_size: 64
+depth : 2
+heads: 2
+bucket_size : 128
+dim: 64
+max_seq_len : 4096
 inner_size: 256
-hidden_dropout_prob: 0.5
-attn_dropout_prob: 0.5
-hidden_act: 'gelu'
-layer_norm_eps: 1e-12
+num_tokens: 20000
+reversible: True
 initializer_range: 0.02
 mask_ratio: 0.2
 loss_type: 'CE'
@@ -25,3 +25,15 @@ MAX_ITEM_LIST_LENGTH: 200
 train_batch_size: 32
 eval_batch_size: 32
 hyper_len: 6
+
+
+        self.trm_encoder = SinkhornTransformerLM(
+                depth=self.depth,
+                heads=self.heads,
+                bucket_size=self.bucket_size,
+                dim =self.dim,
+                max_seq_len = self.max_seq_len,
+                num_tokens = self.num_tokens,
+                reversible = self.reversible,
+                return_embeddings = True
+                )
