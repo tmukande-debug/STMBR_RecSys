@@ -10,10 +10,6 @@ from recbole.model.layers import HGNN
 from sinkhorn_transformer import SinkhornTransformerLM, AutoregressiveWrapper
 from sinkhorn_transformer import Autopadder
 
-
-#SOFT , rela-transformer, Nystromformer, conformer, compressive-transformer-pytorch,sinkhorn-transformer, GraphiT,flash_pytorchm Graph_Transformer_Networks, memory-efficient-attention-pytorch
-
-
 def sim(z1: torch.Tensor, z2: torch.Tensor):
     z1 = F.normalize(z1)
     z2 = F.normalize(z2)
