@@ -69,13 +69,13 @@ class STMBR(SequentialRecommender):
                 dim =self.dim,
                 max_seq_len = self.max_seq_len,
                 num_tokens = self.num_tokens,
-                reversible = True,
-                return_embeddings = True,
-                use_simple_sort_net = True, 
+                reversible = self.reversible,
+                return_embeddings = self.return_embeddings,
+                use_simple_sort_net = self.use_simple_sort_net, 
                 sinkhorn_iter = self.sinkhorn_iter,
                 n_sortcut = self.n_sortcut,
                 temperature = self.temperature,         
-                non_permutative = False
+                non_permutative = self.non_permutative
                 )
         #self.trm_encoder = AutoregressiveWrapper(self.trm_encoder)   
         self.trm_encoder = Autopadder(self.trm_encoder, pad_left=True)
