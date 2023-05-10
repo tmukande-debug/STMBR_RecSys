@@ -1,5 +1,5 @@
 ## STMBR
-Implementation for our paper **Sinkhorn Transformer for Multi-Behaviour Recommendation**.
+Implementation code for the paper **Sinkhorn Transformer for Multi-Behaviour Recommendation**.
 
 ## Requirements
 The code is built on Pytorch and the [RecBole](https://github.com/RUCAIBox/RecBole) library. Use following command to install the requeiremnts:
@@ -8,7 +8,7 @@ The code is built on Pytorch and the [RecBole](https://github.com/RUCAIBox/RecBo
 
 
 ## Datasets
-
+Download the public datasets  at: https://drive.google.com/file/d/1OFT_5Xp_az-GSHIl7QEPB9zhulbooLzE/view?usp=sharing
 ##### Unzip the datasets and move them to the *./dataset/* directory
 
 ## Run STMBR
