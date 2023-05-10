@@ -34,12 +34,12 @@ class STMBR(SequentialRecommender):
         self.hidden_act = config['hidden_act']
         self.layer_norm_eps = config['layer_norm_eps']
         self.depth = config['depth']
-        self.max_seq_len = config[' max_seq_len']
+        self.max_seq_len = config['max_seq_len']
         self.use_simple_sort_net = config['use_simple_sort_net']
-        self.sinkhorn_iter = config'sinkhorn_iter]
+        self.sinkhorn_iter = config['sinkhorn_iter]
         self.n_sortcut = config['n_sortcut']
         self.temperature = config['temperature']
-        self.non_permutative = config'non_permutative']
+        self.non_permutative = config['non_permutative']
        
         self.mask_ratio = config['mask_ratio']
 
