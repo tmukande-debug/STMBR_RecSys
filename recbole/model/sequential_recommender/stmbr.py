@@ -62,9 +62,9 @@ class STMBR(SequentialRecommender):
                 heads=self.heads,
                 bucket_size=self.bucket_size,
                 dim =self.dim,
-                max_seq_len = DE_SEQ_LEN,
-                num_tokens = 20000,
-                reversible = True,
+                max_seq_len = self.max_seq_len,
+                num_tokens = self.num_tokens,
+                reversible = self.reversible,
                 return_embeddings = True
                 )
         #self.trm_encoder = AutoregressiveWrapper(self.trm_encoder)   
