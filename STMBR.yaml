@@ -26,14 +26,3 @@ train_batch_size: 32
 eval_batch_size: 32
 hyper_len: 6
 
-
-        self.trm_encoder = SinkhornTransformerLM(
-                depth=self.depth,
-                heads=self.heads,
-                bucket_size=self.bucket_size,
-                dim =self.dim,
-                max_seq_len = self.max_seq_len,
-                num_tokens = self.num_tokens,
-                reversible = self.reversible,
-                return_embeddings = True
-                )
