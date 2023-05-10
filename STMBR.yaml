@@ -25,4 +25,10 @@ MAX_ITEM_LIST_LENGTH: 200
 train_batch_size: 32
 eval_batch_size: 32
 hyper_len: 6
+use_simple_sort_net : True
+sinkhorn_iter : 7   
+n_sortcut : 2           
+temperature : 0.75        
+non_permutative : False
+
 
