@@ -35,6 +35,11 @@ class STMBR(SequentialRecommender):
         self.layer_norm_eps = config['layer_norm_eps']
         self.depth = config['depth']
         self.max_seq_len = config[' max_seq_len']
+        self.use_simple_sort_net = config['use_simple_sort_net']
+        self.sinkhorn_iter = config'sinkhorn_iter]
+        self.n_sortcut = config['n_sortcut']
+        self.temperature = config['temperature']
+        self.non_permutative = config'non_permutative']
        
         self.mask_ratio = config['mask_ratio']
 
@@ -64,8 +69,13 @@ class STMBR(SequentialRecommender):
                 dim =self.dim,
                 max_seq_len = self.max_seq_len,
                 num_tokens = self.num_tokens,
-                reversible = self.reversible,
-                return_embeddings = True
+                reversible = True,
+                return_embeddings = True,
+                use_simple_sort_net = True, 
+                sinkhorn_iter = self.sinkhorn_iter,
+                n_sortcut = self.n_sortcut,
+                temperature = self.temperature,         
+                non_permutative = False
                 )
         #self.trm_encoder = AutoregressiveWrapper(self.trm_encoder)   
         self.trm_encoder = Autopadder(self.trm_encoder, pad_left=True)
